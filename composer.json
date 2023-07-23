@@ -1,0 +1,9 @@
+{
+    "require": {
+        "justinrainbow/json-schema": "^5.2",
+        "halaxa/json-machine": "^1.1"
+    },
+	"config": {
+        "optimize-autoloader": true
+    }
+}
