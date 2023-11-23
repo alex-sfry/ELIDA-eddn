@@ -1,5 +1,6 @@
 <?php
-namespace Eddn;
+
+namespace DBConnect;
 
 /**
  * Class DBConnect
@@ -8,33 +9,36 @@ namespace Eddn;
  */
 class DBConnect
 {
+    // получаем строку DSN
+    /**
+     * @return string
+     */
+    private function getDSN(): string
+    {
+        return "mysql:dbname=" . DB_NAME . ";host=" . DB_HOST;
+    }
 
-	// константы класса
-	const DB_NAME = 'elida';
-	const DB_HOST = 'localhost:9000';
-	const DB_LOGIN = 'root';
-	const DB_PASSWORD = 'natalia7980';
+    // получаем объект соединения с БД
+    /**
+     * @return object
+     */
+    public function getConnection(): object
+    {
+        return new \PDO(
+            $this->getDSN(),
+            DB_LOGIN,
+            DB_PASSWORD,
+            [
+                \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
+                \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+            ]
+        );
+    }
 
-	// статические методы
-	// получаем строку DSN
-	private static function getDSN(){
-		return "mysql:dbname=".self::DB_NAME.";host=".self::DB_HOST;
-	}
-
-	// получаем объект соединения с БД
-	public static function getConnection(){
-		return new \PDO(self::getDSN(), self::DB_LOGIN, self::DB_PASSWORD,
-									[
-										\PDO::ATTR_DEFAULT_FETCH_MODE =>\PDO::FETCH_ASSOC,
-										\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
-									]);
-		// return new PDO("mysql:dbname=test;host=localhost", 'root', '123456');
-	}
-
-	public static function d($arr){
-		echo '<pre>';
-		print_r($arr);
-		echo '</pre>';
-	}
-
+    public static function d($arr)
+    {
+        echo '<pre>';
+        print_r($arr);
+        echo '</pre>';
+    }
 }

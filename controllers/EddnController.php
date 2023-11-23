@@ -1,11 +1,10 @@
 <?php
+
+use Eddn\MarketData;
+use JsonSchema\Validator;
+
 require_once('vendor/autoload.php');
-
-require_once('components/DBConnect.php');
-$pdo = \Eddn\DBConnect::getConnection();
-
 require_once('helpers/validate_functions.php');
-require_once('models/MarketData.php');
 
 /**
  *  Configuration
@@ -39,8 +38,12 @@ while (true) {
             $json       = $message;
 
             // Validate
-            $validator = new JsonSchema\Validator;
-            validate_commodities($pdo, $validator, $json);
+            $validator = new Validator();
+            $market_data = new MarketData();
+
+            if (validate_commodities($validator, $json)) {
+                $market_data->addMarketData($json);
+            }
 
             //fwrite(STDOUT, $json . PHP_EOL);
         }

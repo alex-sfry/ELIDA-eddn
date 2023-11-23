@@ -2,16 +2,33 @@
 
 namespace Eddn;
 
+use DBConnect\DBConnect;
+
+/**
+ * Class MarketData
+ */
 class MarketData
 {
-    const RESTRICTED_VALUES = [
+    protected const RESTRICTED_VALUES = [
         'statusFlags',
         'Producer',
         'Rare',
         'id'
     ];
 
-    public static function addMarketData($pdo, $json = null)
+    private $pdo;
+
+    public function __construct()
+    {
+        $this->pdo = (new DBConnect())->getConnection();
+    }
+
+    /**
+     * @param string|null $json
+     *
+     * @return void
+     */
+    public function addMarketData(string $json = null): void
     {
         if (!$json) {
             echo "json is NULL\n";
@@ -22,7 +39,9 @@ class MarketData
         $output = $json_data['message']['marketId'] . ' ' . count($json_data['message']['commodities']);
         echo $output . "\n";
 
-        if (count($json_data['message']['commodities']) < 1) return;
+        if (count($json_data['message']['commodities']) < 1) {
+            return;
+        }
 
         for ($i = 0; $i < count($json_data['message']['commodities']); $i++) {
             $json_data['message']['commodities'][$i] =
@@ -82,8 +101,6 @@ class MarketData
             }
         }
 
-        // if (count($sqlArray) < 1) return;
-
         // sql query 1st part - table, columns
         $sql = 'INSERT INTO markets 
         (buy_price, demand, demand_bracket, mean_price,`name`,
@@ -100,7 +117,7 @@ class MarketData
         sell_price=VALUES(sell_price), stock=VALUES(stock), 
         stock_bracket=VALUES(stock_bracket), timestamp=VALUES(timestamp)";
 
-        $query = $pdo->prepare($sql);
+        $query = $this->pdo->prepare($sql);
         $query->execute($paramArray);
 
         echo 'added / updated ' . $query->rowCount() . "rows\n";

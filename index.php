@@ -1,9 +1,14 @@
-<?php 
+<?php
 
-echo 'Hello!';
-echo '<br>';
+// namespace Eddn;
+// const ROOT = __DIR__;
+// require_once(ROOT . "/components/Autoload.php");
+// require_once('controllers/EddnController.php');
 
-// require_once('models/EddnController.php');
+echo phpinfo();
+
+// DBConnect::d(scandir(ROOT . "/controllers"));
+
 
 /* =====curl example===== */
 // $url = "https://www.edsm.net/api-status-v1/elite-server";
@@ -22,7 +27,7 @@ echo '<br>';
 
     // Use basename() function to return the base name of file
     // $file_name = basename($url);
-      
+
     // Use file_get_contents() function to get the file
     // from url and use file_put_contents() function to
     // save the file by using base name
