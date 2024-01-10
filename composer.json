@@ -1,7 +1,10 @@
 {
     "require": {
         "justinrainbow/json-schema": "^5.2",
-        "halaxa/json-machine": "^1.1"
+        "halaxa/json-machine": "^1.1",
+        "ext-pdo": "*",
+        "ext-zmq": "*",
+        "ext-zlib": "*"
     },
 	"config": {
         "optimize-autoloader": true

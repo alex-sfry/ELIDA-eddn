@@ -1,9 +1,11 @@
 <?php
 
-function classAutoloader($class_name)
+function classAutoloader($class_name): void
 {
     // # List all the class directories in the array.
     $array_paths = array(
+        '/debug/',
+        '/helpers/',
         '/models/',
         '/components/'
     );
@@ -12,7 +14,7 @@ function classAutoloader($class_name)
 
     foreach ($array_paths as $path) {
         if (count($class_name) > 1) {
-            $path = ROOT . $path . $class_name[1] . '.php';
+            $path = ROOT . $path . $class_name[count($class_name) - 1] . '.php';
         } else {
             $path = ROOT . $path . $class_name[0] . '.php';
         }
@@ -21,8 +23,6 @@ function classAutoloader($class_name)
             include_once $path;
         }
     }
-
-    // require_once (ROOT . '/components/'  . $class_name[1] . '.php');
 }
 
 spl_autoload_register('classAutoloader');

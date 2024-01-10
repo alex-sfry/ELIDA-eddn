@@ -3,6 +3,7 @@
 namespace Eddn;
 
 use DBConnect\DBConnect;
+use PDO;
 
 /**
  * Class MarketData
@@ -16,7 +17,7 @@ class MarketData
         'id'
     ];
 
-    private $pdo;
+    private PDO $pdo;
 
     public function __construct()
     {
@@ -43,49 +44,37 @@ class MarketData
             return;
         }
 
-        for ($i = 0; $i < count($json_data['message']['commodities']); $i++) {
-            $json_data['message']['commodities'][$i] =
-                array_filter($json_data['message']['commodities'][$i], function ($key) {
-                    return ($key !== self::RESTRICTED_VALUES[0] &&
-                            $key !== self::RESTRICTED_VALUES[1] &&
-                            $key !== self::RESTRICTED_VALUES[2] &&
-                            $key !== self::RESTRICTED_VALUES[3]
-                        );
-                }, ARRAY_FILTER_USE_KEY);
+        foreach ($json_data['message']['commodities'] as $i => &$commodity) {
+            $commodity = array_filter($commodity, function ($key) {
+                return !in_array($key, self::RESTRICTED_VALUES);
+            }, ARRAY_FILTER_USE_KEY);
 
-            if (!is_numeric($json_data['message']['commodities'][$i]['buyPrice'])) {
-                $json_data['message']['commodities'][$i]['buyPrice'] = 0;
+            switch (true) {
+                case !is_numeric($commodity['buyPrice']):
+                    $commodity['buyPrice'] = 0;
+                    break;
+                case !is_numeric($commodity['demand']):
+                    $commodity['demand'] = 0;
+                    break;
+                case !is_numeric($commodity['meanPrice']):
+                    $commodity['meanPrice'] = 0;
+                    break;
+                case !is_numeric($commodity['stockBracket']):
+                    $commodity['stockBracket'] = 0;
+                    break;
+                case !is_numeric($commodity['demandBracket']):
+                    $commodity['demandBracket'] = 0;
+                    break;
+                case !is_numeric($commodity['sellPrice']):
+                    $commodity['sellPrice'] = 0;
+                    break;
+                case !is_numeric($commodity['stock']):
+                    $commodity['stock'] = 0;
+                    break;
             }
 
-            if (!is_numeric($json_data['message']['commodities'][$i]['demand'])) {
-                $json_data['message']['commodities'][$i]['demand'] = 0;
-            }
-
-            if (!is_numeric($json_data['message']['commodities'][$i]['meanPrice'])) {
-                $json_data['message']['commodities'][$i]['meanPrice'] = 0;
-            }
-
-            if (!is_numeric($json_data['message']['commodities'][$i]['stockBracket'])) {
-                $json_data['message']['commodities'][$i]['stockBracket'] = 0;
-            }
-
-            if (!is_numeric($json_data['message']['commodities'][$i]['demandBracket'])) {
-                $json_data['message']['commodities'][$i]['demandBracket'] = 0;
-            }
-
-            if (!is_numeric($json_data['message']['commodities'][$i]['sellPrice'])) {
-                $json_data['message']['commodities'][$i]['sellPrice'] = 0;
-            }
-
-            if (!is_numeric($json_data['message']['commodities'][$i]['stock'])) {
-                $json_data['message']['commodities'][$i]['stock'] = 0;
-            }
-
-            $json_data['message']['commodities'][$i]['marketId'] =
-                (int)$json_data['message']['marketId'];
-
-            $json_data['message']['commodities'][$i]['timestamp'] =
-                htmlspecialchars($json_data['message']['timestamp']);
+            $commodity['marketId'] = (int)$json_data['message']['marketId'];
+            $commodity['timestamp'] = htmlspecialchars($json_data['message']['timestamp']);
         }
 
         $paramArray = [];

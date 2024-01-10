@@ -2,14 +2,13 @@
 
 namespace DBConnect;
 
+use PDO;
+
 /**
  * Class DBConnect
- * класс подключения к БД
- * исп статические свойства и методы - обращение без создания объекта класса
  */
 class DBConnect
 {
-    // получаем строку DSN
     /**
      * @return string
      */
@@ -20,25 +19,18 @@ class DBConnect
 
     // получаем объект соединения с БД
     /**
-     * @return object
+     * @return PDO
      */
-    public function getConnection(): object
+    public function getConnection(): PDO
     {
-        return new \PDO(
+        return new PDO(
             $this->getDSN(),
             DB_LOGIN,
             DB_PASSWORD,
             [
-                \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
-                \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
             ]
         );
-    }
-
-    public static function d($arr)
-    {
-        echo '<pre>';
-        print_r($arr);
-        echo '</pre>';
     }
 }

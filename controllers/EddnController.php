@@ -2,9 +2,7 @@
 
 use Eddn\MarketData;
 use JsonSchema\Validator;
-
-require_once('vendor/autoload.php');
-require_once('helpers/validate_functions.php');
+use App\Helpers\SchemaValidator;
 
 /**
  *  Configuration
@@ -39,9 +37,10 @@ while (true) {
 
             // Validate
             $validator = new Validator();
+            $schema_validator = new SchemaValidator();
             $market_data = new MarketData();
 
-            if (validate_commodities($validator, $json)) {
+            if ($schema_validator->validateCommodities($validator, $json)) {
                 $market_data->addMarketData($json);
             }
 
@@ -54,4 +53,4 @@ while (true) {
 }
 
 // Exit correctly
-exit(0);
+//exit(0);
