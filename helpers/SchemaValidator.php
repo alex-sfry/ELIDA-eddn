@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace Core\Helper;
 
 use JsonSchema\Validator;
 

@@ -6,7 +6,14 @@
         "ext-zmq": "*",
         "ext-zlib": "*"
     },
-	"config": {
-        "optimize-autoloader": true
+    "autoload": {
+        "psr-4": {
+            "Core\\Component\\": "components/",
+            "Core\\Database\\": "components/database/",
+            "Core\\Controller\\": "controllers/",
+            "Core\\Helper\\": "helpers/",
+            "Core\\Model\\": "models/",
+            "Core\\Debug\\": "debug/"
+        }
     }
 }

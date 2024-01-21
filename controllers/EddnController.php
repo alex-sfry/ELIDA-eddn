@@ -1,8 +1,8 @@
 <?php
 
-use Eddn\MarketData;
+use Core\Model\MarketData;
 use JsonSchema\Validator;
-use App\Helpers\SchemaValidator;
+use Core\Helper\SchemaValidator;
 
 /**
  *  Configuration

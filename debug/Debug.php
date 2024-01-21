@@ -1,5 +1,7 @@
 <?php
 
+namespace Core\Debug;
+
 /**
  * Class Debug
  *

@@ -1,15 +1,23 @@
 <?php
 
-namespace DBConnect;
+namespace Core\Database;
 
 use PDO;
 
 /**
  * Class DBConnect
+ * connect to DB
  */
 class DBConnect
 {
+    public function __construct()
+    {
+        require_once ROOT . '/../bootstrap3.php';
+    }
+
     /**
+     * get DSN string
+     *
      * @return string
      */
     private function getDSN(): string
@@ -17,8 +25,9 @@ class DBConnect
         return "mysql:dbname=" . DB_NAME . ";host=" . DB_HOST;
     }
 
-    // получаем объект соединения с БД
     /**
+     * get DB connection object
+     *
      * @return PDO
      */
     public function getConnection(): PDO

@@ -1,14 +1,11 @@
 <?php
 
-namespace Eddn;
-
-use DBConnect\DBConnect;
-use PDO;
+namespace Core\Model;
 
 /**
  * Class MarketData
  */
-class MarketData
+class MarketData extends Model
 {
     protected const RESTRICTED_VALUES = [
         'statusFlags',
@@ -16,13 +13,6 @@ class MarketData
         'Rare',
         'id'
     ];
-
-    private PDO $pdo;
-
-    public function __construct()
-    {
-        $this->pdo = (new DBConnect())->getConnection();
-    }
 
     /**
      * @param string|null $json
@@ -106,7 +96,7 @@ class MarketData
         sell_price=VALUES(sell_price), stock=VALUES(stock), 
         stock_bracket=VALUES(stock_bracket), timestamp=VALUES(timestamp)";
 
-        $query = $this->pdo->prepare($sql);
+        $query = self::getConnection()->prepare($sql);
         $query->execute($paramArray);
 
         echo 'added / updated ' . $query->rowCount() . "rows\n";
