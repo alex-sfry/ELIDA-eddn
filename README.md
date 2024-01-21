@@ -6,4 +6,4 @@ EDDN listener (zeroMQ)
 for more nformation about EDDN check https://github.com/EDCD/EDDN
 <br><br>
 <br><br>
-max version supported - PHP 7.2 (zeroMQ PHP extension limitaton)
+for Windows OS: max version supported - PHP 7.2 (zeroMQ PHP extension limitaton)
