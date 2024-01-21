@@ -42,25 +42,18 @@ class MarketData extends Model
             switch (true) {
                 case !is_numeric($commodity['buyPrice']):
                     $commodity['buyPrice'] = 0;
-                    break;
                 case !is_numeric($commodity['demand']):
                     $commodity['demand'] = 0;
-                    break;
                 case !is_numeric($commodity['meanPrice']):
                     $commodity['meanPrice'] = 0;
-                    break;
                 case !is_numeric($commodity['stockBracket']):
                     $commodity['stockBracket'] = 0;
-                    break;
                 case !is_numeric($commodity['demandBracket']):
                     $commodity['demandBracket'] = 0;
-                    break;
                 case !is_numeric($commodity['sellPrice']):
                     $commodity['sellPrice'] = 0;
-                    break;
                 case !is_numeric($commodity['stock']):
                     $commodity['stock'] = 0;
-                    break;
             }
 
             $commodity['marketId'] = (int)$json_data['message']['marketId'];
