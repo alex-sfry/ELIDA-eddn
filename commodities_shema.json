@@ -65,6 +65,14 @@
                     "renamed": "StarSystem",
                     "minLength": 1
                 },
+                "stationType": {
+                    "type": "string",
+                    "renamed": "StationType"
+                },
+                "carrierDockingAccess": {
+                    "type": "string",
+                    "renamed": "CarrierDockingAccess"
+                },
                 "marketId": {
                     "type": "integer",
                     "renamed": "MarketID"
@@ -186,10 +194,6 @@
                         "type": "string",
                         "minLength": 1
                     }
-                },
-                "StationType": {
-                    "$ref": "#/definitions/disallowed",
-                    "description": "Not present in CAPI data, so removed from Journal-sourced data"
                 }
             }
         }
@@ -217,6 +221,7 @@
                 ""
             ],
             "description": "Note: A value of \"\" indicates that the commodity is not normally sold/purchased at this station, but is currently temporarily for sale/purchase"
+
         }
     }
 }
