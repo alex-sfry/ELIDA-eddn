@@ -1,0 +1,745 @@
+{
+    "$schemaRef": "https://eddn.edcd.io/schemas/journal/1",
+    "header": {
+        "gamebuild": "r299332/r0 ",
+        "gameversion": "4.0.0.1701",
+        "gatewayTimestamp": "2024-02-23T09:30:14.048604Z",
+        "softwareName": "E:D Market Connector [Windows]",
+        "softwareVersion": "5.10.1",
+        "uploaderID": "beabe4c8a3e19b9e79b434fb8a42a9788619c068"
+    },
+    "message": {
+        "AbsoluteMagnitude": 17.830231,
+        "Age_MY": 12030,
+        "AxialTilt": 0.0,
+        "BodyID": 0,
+        "BodyName": "Col 285 Sector QH-K a38-4",
+        "DistanceFromArrivalLS": 0.0,
+        "Luminosity": "V",
+        "Radius": 83435376.0,
+        "RotationPeriod": 35383.729282,
+        "ScanType": "Detailed",
+        "StarPos": [
+            -79.84375,
+            -32.40625,
+            56.15625
+        ],
+        "StarSystem": "Col 285 Sector QH-K a38-4",
+        "StarType": "T",
+        "StellarMass": 0.039063,
+        "Subclass": 9,
+        "SurfaceTemperature": 736.0,
+        "SystemAddress": 75727252638592,
+        "WasDiscovered": true,
+        "WasMapped": false,
+        "event": "Scan",
+        "horizons": true,
+        "odyssey": true,
+        "timestamp": "2024-02-23T09:26:21Z"
+    }
+}{
+    "$schemaRef": "https://eddn.edcd.io/schemas/journal/1",
+    "header": {
+        "gamebuild": "r299332/r0 ",
+        "gameversion": "4.0.0.1701",
+        "gatewayTimestamp": "2024-02-23T09:30:14.295591Z",
+        "softwareName": "E:D Market Connector [Windows]",
+        "softwareVersion": "5.10.1",
+        "uploaderID": "c9375447b4a5bb9fa88c619e707772d515038657"
+    },
+    "message": {
+        "AscendingNode": 71.382693,
+        "Atmosphere": "",
+        "AtmosphereType": "None",
+        "AxialTilt": -0.036754,
+        "BodyID": 20,
+        "BodyName": "HIP 15329 A 1 c",
+        "Composition": {
+            "Ice": 0.0,
+            "Metal": 0.091554,
+            "Rock": 0.908446
+        },
+        "DistanceFromArrivalLS": 1206.012517,
+        "Eccentricity": 0.002443,
+        "Landable": true,
+        "MassEM": 0.002712,
+        "Materials": [
+            {
+                "Name": "iron",
+                "Percent": 19.620701
+            },
+            {
+                "Name": "sulphur",
+                "Percent": 18.918526
+            },
+            {
+                "Name": "carbon",
+                "Percent": 15.908523
+            },
+            {
+                "Name": "nickel",
+                "Percent": 14.840278
+            },
+            {
+                "Name": "phosphorus",
+                "Percent": 10.184909
+            },
+            {
+                "Name": "chromium",
+                "Percent": 8.82408
+            },
+            {
+                "Name": "germanium",
+                "Percent": 5.612399
+            },
+            {
+                "Name": "zirconium",
+                "Percent": 2.278368
+            },
+            {
+                "Name": "tellurium",
+                "Percent": 1.453622
+            },
+            {
+                "Name": "molybdenum",
+                "Percent": 1.28122
+            },
+            {
+                "Name": "tungsten",
+                "Percent": 1.077374
+            }
+        ],
+        "MeanAnomaly": 252.911971,
+        "OrbitalInclination": 0.913942,
+        "OrbitalPeriod": 473808.151484,
+        "Parents": [
+            {
+                "Planet": 16
+            },
+            {
+                "Star": 1
+            },
+            {
+                "Null": 0
+            }
+        ],
+        "Periapsis": 20.983936,
+        "PlanetClass": "Rocky body",
+        "Radius": 978115.75,
+        "RotationPeriod": 473824.735634,
+        "ScanType": "Detailed",
+        "SemiMajorAxis": 1119316458.702087,
+        "StarPos": [
+            -87.84375,
+            -52.0,
+            -167.375
+        ],
+        "StarSystem": "HIP 15329",
+        "SurfaceGravity": 1.129717,
+        "SurfacePressure": 0.0,
+        "SurfaceTemperature": 238.330627,
+        "SystemAddress": 358596186802,
+        "TerraformState": "",
+        "TidalLock": true,
+        "Volcanism": "",
+        "WasDiscovered": true,
+        "WasMapped": true,
+        "event": "Scan",
+        "horizons": true,
+        "odyssey": true,
+        "timestamp": "2024-02-23T09:30:14Z"
+    }
+}{
+    "$schemaRef": "https://eddn.edcd.io/schemas/journal/1",
+    "header": {
+        "gamebuild": "r299332/r0 ",
+        "gameversion": "4.0.0.1701",
+        "gatewayTimestamp": "2024-02-23T09:30:14.391301Z",
+        "softwareName": "EDDiscovery",
+        "softwareVersion": "17.0.4.0",
+        "uploaderID": "6231a72f6bb993cd7400b580869e7fd360a7a886"
+    },
+    "message": {
+        "AscendingNode": -121.098397,
+        "Atmosphere": "",
+        "AtmosphereComposition": [
+            {
+                "Name": "Hydrogen",
+                "Percent": 73.208359
+            },
+            {
+                "Name": "Helium",
+                "Percent": 26.791632
+            }
+        ],
+        "AxialTilt": -3.141326,
+        "BodyID": 38,
+        "BodyName": "NGC 3532 Sector ZV-M c7-6 6",
+        "DistanceFromArrivalLS": 3048.72296,
+        "Eccentricity": 0.056381,
+        "Landable": false,
+        "MassEM": 3717.87915,
+        "MeanAnomaly": 224.12526,
+        "OrbitalInclination": -4.104425,
+        "OrbitalPeriod": 529221928.119659,
+        "Parents": [
+            {
+                "Star": 0
+            }
+        ],
+        "Periapsis": 183.12035,
+        "PlanetClass": "Sudarsky class IV gas giant",
+        "Radius": 65027876.0,
+        "ReserveLevel": "PristineResources",
+        "Rings": [
+            {
+                "InnerRad": 118860000.0,
+                "MassMT": 529770000000.0,
+                "Name": "NGC 3532 Sector ZV-M c7-6 6 A Ring",
+                "OuterRad": 176070000.0,
+                "RingClass": "eRingClass_MetalRich"
+            },
+            {
+                "InnerRad": 176170000.0,
+                "MassMT": 8159000000000.0,
+                "Name": "NGC 3532 Sector ZV-M c7-6 6 B Ring",
+                "OuterRad": 539310000.0,
+                "RingClass": "eRingClass_MetalRich"
+            }
+        ],
+        "RotationPeriod": 9394.406064,
+        "ScanType": "Detailed",
+        "SemiMajorAxis": 877209383249.2828,
+        "StarPos": [
+            1406.125,
+            10.0625,
+            631.65625
+        ],
+        "StarSystem": "NGC 3532 Sector ZV-M c7-6",
+        "SurfaceGravity": 350.433458,
+        "SurfacePressure": 0.0,
+        "SurfaceTemperature": 951.438599,
+        "SystemAddress": 1735468782418,
+        "TerraformState": "",
+        "TidalLock": false,
+        "Volcanism": "",
+        "WasDiscovered": true,
+        "WasMapped": false,
+        "event": "Scan",
+        "horizons": true,
+        "odyssey": false,
+        "timestamp": "2024-02-23T09:30:13Z"
+    }
+}{
+    "$schemaRef": "https://eddn.edcd.io/schemas/journal/1",
+    "header": {
+        "gamebuild": "r299332/r0 ",
+        "gameversion": "4.0.0.1701",
+        "gatewayTimestamp": "2024-02-23T09:30:14.579588Z",
+        "softwareName": "E:D Market Connector [Windows]",
+        "softwareVersion": "5.10.1",
+        "uploaderID": "3667e1fee34d37037d936738f8b6058e00a30154"
+    },
+    "message": {
+        "Body": "LP 91-140 A 3 A Ring",
+        "BodyID": 27,
+        "BodyType": "PlanetaryRing",
+        "DistFromStarLS": 2422.000243,
+        "Docked": false,
+        "Factions": [
+            {
+                "Allegiance": "Federation",
+                "FactionState": "None",
+                "Government": "Democracy",
+                "Happiness": "$Faction_HappinessBand2;",
+                "Influence": 0.072978,
+                "Name": "LP 91-140 Labour"
+            },
+            {
+                "ActiveStates": [
+                    {
+                        "State": "Boom"
+                    }
+                ],
+                "Allegiance": "Independent",
+                "FactionState": "Boom",
+                "Government": "Theocracy",
+                "Happiness": "$Faction_HappinessBand2;",
+                "Influence": 0.634122,
+                "Name": "Pi Mensae Brotherhood"
+            },
+            {
+                "Allegiance": "Independent",
+                "FactionState": "None",
+                "Government": "Feudal",
+                "Happiness": "$Faction_HappinessBand2;",
+                "Influence": 0.108481,
+                "Name": "Barons of LP 91-140"
+            },
+            {
+                "Allegiance": "Federation",
+                "FactionState": "None",
+                "Government": "Corporate",
+                "Happiness": "$Faction_HappinessBand2;",
+                "Influence": 0.04931,
+                "Name": "LP 91-140 Fortune Commodities"
+            },
+            {
+                "Allegiance": "Independent",
+                "FactionState": "None",
+                "Government": "Feudal",
+                "Happiness": "$Faction_HappinessBand2;",
+                "Influence": 0.035503,
+                "Name": "Dukes of Pi Mensae"
+            },
+            {
+                "Allegiance": "Federation",
+                "FactionState": "None",
+                "Government": "Corporate",
+                "Happiness": "$Faction_HappinessBand2;",
+                "Influence": 0.089744,
+                "Name": "LTT 1678 Electronics Organisation"
+            },
+            {
+                "Allegiance": "Independent",
+                "FactionState": "None",
+                "Government": "Anarchy",
+                "Happiness": "$Faction_HappinessBand2;",
+                "Influence": 0.009862,
+                "Name": "LP 91-140 Jet Ring"
+            }
+        ],
+        "Multicrew": false,
+        "Population": 108381,
+        "StarPos": [
+            38.71875,
+            -35.53125,
+            9.84375
+        ],
+        "StarSystem": "LP 91-140",
+        "SystemAddress": 671491237289,
+        "SystemAllegiance": "Independent",
+        "SystemEconomy": "$economy_Refinery;",
+        "SystemFaction": {
+            "FactionState": "Boom",
+            "Name": "Pi Mensae Brotherhood"
+        },
+        "SystemGovernment": "$government_Theocracy;",
+        "SystemSecondEconomy": "$economy_Service;",
+        "SystemSecurity": "$SYSTEM_SECURITY_medium;",
+        "Taxi": false,
+        "event": "Location",
+        "horizons": true,
+        "odyssey": true,
+        "timestamp": "2024-02-23T09:30:13Z"
+    }
+}{
+    "$schemaRef": "https://eddn.edcd.io/schemas/journal/1",
+    "header": {
+        "gamebuild": "r299332/r0 ",
+        "gameversion": "4.0.0.1701",
+        "gatewayTimestamp": "2024-02-23T09:30:14.731972Z",
+        "softwareName": "E:D Market Connector [Windows]",
+        "softwareVersion": "5.10.1",
+        "uploaderID": "beabe4c8a3e19b9e79b434fb8a42a9788619c068"
+    },
+    "message": {
+        "Body": "Pegasi Sector WV-A a15-0",
+        "BodyID": 0,
+        "BodyType": "Star",
+        "Multicrew": false,
+        "Population": 0,
+        "StarPos": [
+            -113.90625,
+            -43.25,
+            37.59375
+        ],
+        "StarSystem": "Pegasi Sector WV-A a15-0",
+        "SystemAddress": 5355287104368,
+        "SystemAllegiance": "",
+        "SystemEconomy": "$economy_None;",
+        "SystemGovernment": "$government_None;",
+        "SystemSecondEconomy": "$economy_None;",
+        "SystemSecurity": "$GAlAXY_MAP_INFO_state_anarchy;",
+        "Taxi": false,
+        "event": "FSDJump",
+        "horizons": true,
+        "odyssey": true,
+        "timestamp": "2024-02-23T09:27:00Z"
+    }
+}{
+    "$schemaRef": "https://eddn.edcd.io/schemas/journal/1",
+    "header": {
+        "gamebuild": "r299332/r0 ",
+        "gameversion": "4.0.0.1701",
+        "gatewayTimestamp": "2024-02-23T09:31:47.772664Z",
+        "softwareName": "EDDiscovery",
+        "softwareVersion": "17.0.4.0",
+        "uploaderID": "0115b312729d24826c3d60829c548c3f40099397"
+    },
+    "message": {
+        "DistFromStarLS": 1229.244479,
+        "LandingPads": {
+            "Large": 6,
+            "Medium": 13,
+            "Small": 7
+        },
+        "MarketID": 3228847616,
+        "StarPos": [
+            -1.1875,
+            -11.8125,
+            -2.15625
+        ],
+        "StarSystem": "YZ Ceti",
+        "StationAllegiance": "Federation",
+        "StationEconomies": [
+            {
+                "Name": "$economy_HighTech;",
+                "Proportion": 0.8
+            },
+            {
+                "Name": "$economy_Refinery;",
+                "Proportion": 0.2
+            }
+        ],
+        "StationEconomy": "$economy_HighTech;",
+        "StationFaction": {
+            "FactionState": "Boom",
+            "Name": "YZ Ceti Blue Galactic & Co"
+        },
+        "StationGovernment": "$government_Corporate;",
+        "StationName": "Clement Orbital",
+        "StationServices": [
+            "dock",
+            "autodock",
+            "blackmarket",
+            "commodities",
+            "contacts",
+            "exploration",
+            "missions",
+            "outfitting",
+            "crewlounge",
+            "rearm",
+            "refuel",
+            "repair",
+            "shipyard",
+            "tuning",
+            "engineer",
+            "missionsgenerated",
+            "facilitator",
+            "flightcontroller",
+            "stationoperations",
+            "powerplay",
+            "searchrescue",
+            "materialtrader",
+            "stationMenu",
+            "shop",
+            "livery",
+            "socialspace",
+            "bartender",
+            "vistagenomics",
+            "pioneersupplies",
+            "apexinterstellar",
+            "frontlinesolutions"
+        ],
+        "StationType": "Coriolis",
+        "SystemAddress": 2869977687465,
+        "Taxi": false,
+        "event": "Docked",
+        "horizons": true,
+        "odyssey": true,
+        "timestamp": "2024-02-22T22:15:18Z"
+    }
+}{
+    "$schemaRef": "https://eddn.edcd.io/schemas/journal/1",
+    "header": {
+        "gamebuild": "r299332/r0 ",
+        "gameversion": "4.0.0.1701",
+        "gatewayTimestamp": "2024-02-23T09:31:50.495459Z",
+        "softwareName": "EDO Materials Helper",
+        "softwareVersion": "2.45",
+        "uploaderID": "0b4f84b6de942293729d78b77b43c7b4e4ee5ab2"
+    },
+    "message": {
+        "DistFromStarLS": 11.070856,
+        "LandingPads": {
+            "Large": 9,
+            "Medium": 18,
+            "Small": 17
+        },
+        "MarketID": 3226858240,
+        "StarPos": [
+            -94.09375,
+            39.84375,
+            31.28125
+        ],
+        "StarSystem": "Iah Bulu",
+        "StationEconomies": [
+            {
+                "Name": "$economy_Industrial;",
+                "Proportion": 0.8
+            },
+            {
+                "Name": "$economy_Refinery;",
+                "Proportion": 0.2
+            }
+        ],
+        "StationEconomy": "$economy_Industrial;",
+        "StationFaction": {
+            "FactionState": "War",
+            "Name": "Dingos of Duwali"
+        },
+        "StationGovernment": "$government_Anarchy;",
+        "StationName": "Metcalf Ring",
+        "StationServices": [
+            "dock",
+            "autodock",
+            "commodities",
+            "contacts",
+            "exploration",
+            "missions",
+            "outfitting",
+            "crewlounge",
+            "rearm",
+            "refuel",
+            "repair",
+            "shipyard",
+            "tuning",
+            "engineer",
+            "missionsgenerated",
+            "facilitator",
+            "flightcontroller",
+            "stationoperations",
+            "powerplay",
+            "stationMenu",
+            "shop",
+            "livery",
+            "socialspace",
+            "bartender",
+            "vistagenomics",
+            "pioneersupplies",
+            "apexinterstellar",
+            "frontlinesolutions"
+        ],
+        "StationType": "Coriolis",
+        "SystemAddress": 2868635706801,
+        "event": "Docked",
+        "horizons": true,
+        "odyssey": true,
+        "timestamp": "2024-02-23T09:31:49Z"
+    }
+}{
+    "$schemaRef": "https://eddn.edcd.io/schemas/journal/1",
+    "header": {
+        "gamebuild": "r299332/r0 ",
+        "gameversion": "4.0.0.1701",
+        "gatewayTimestamp": "2024-02-23T09:31:58.721284Z",
+        "softwareName": "E:D Market Connector [Windows]",
+        "softwareVersion": "5.10.1",
+        "uploaderID": "acb250a7da8a0adc18e02aa9dd193581df886cbd"
+    },
+    "message": {
+        "DistFromStarLS": 363.468605,
+        "LandingPads": {
+            "Large": 4,
+            "Medium": 13,
+            "Small": 8
+        },
+        "MarketID": 3231491328,
+        "Multicrew": false,
+        "StarPos": [
+            30.1875,
+            145.03125,
+            58.03125
+        ],
+        "StarSystem": "Chakpa",
+        "StationAllegiance": "Federation",
+        "StationEconomies": [
+            {
+                "Name": "$economy_Refinery;",
+                "Proportion": 1.0
+            }
+        ],
+        "StationEconomy": "$economy_Refinery;",
+        "StationFaction": {
+            "FactionState": "Boom",
+            "Name": "Workers of HIP 67882 Democrats"
+        },
+        "StationGovernment": "$government_Democracy;",
+        "StationName": "Chargaff Installation",
+        "StationServices": [
+            "dock",
+            "autodock",
+            "blackmarket",
+            "commodities",
+            "contacts",
+            "exploration",
+            "missions",
+            "outfitting",
+            "crewlounge",
+            "rearm",
+            "refuel",
+            "repair",
+            "engineer",
+            "missionsgenerated",
+            "facilitator",
+            "flightcontroller",
+            "stationoperations",
+            "powerplay",
+            "searchrescue",
+            "stationMenu",
+            "livery",
+            "socialspace",
+            "bartender",
+            "vistagenomics",
+            "pioneersupplies",
+            "apexinterstellar",
+            "frontlinesolutions"
+        ],
+        "StationType": "Coriolis",
+        "SystemAddress": 2870246647233,
+        "Taxi": false,
+        "event": "Docked",
+        "horizons": true,
+        "odyssey": true,
+        "timestamp": "2024-02-23T09:31:57Z"
+    }
+}{
+    "$schemaRef": "https://eddn.edcd.io/schemas/journal/1",
+    "header": {
+        "gamebuild": "r299332/r0 ",
+        "gameversion": "4.0.0.1701",
+        "gatewayTimestamp": "2024-02-23T09:32:05.421073Z",
+        "softwareName": "EDDiscovery",
+        "softwareVersion": "17.0.4.0",
+        "uploaderID": "ad9234301dd394042b245ca82ca89eae7a0d4d01"
+    },
+    "message": {
+        "DistFromStarLS": 23.781075,
+        "LandingPads": {
+            "Large": 7,
+            "Medium": 11,
+            "Small": 9
+        },
+        "MarketID": 3225228800,
+        "StarPos": [
+            99.0625,
+            -87.375,
+            76.96875
+        ],
+        "StarSystem": "Caledo",
+        "StationAllegiance": "Empire",
+        "StationEconomies": [
+            {
+                "Name": "$economy_Extraction;",
+                "Proportion": 1.0
+            }
+        ],
+        "StationEconomy": "$economy_Extraction;",
+        "StationFaction": {
+            "Name": "Hayimshis Noblement"
+        },
+        "StationGovernment": "$government_Feudal;",
+        "StationName": "Brosnatch Station",
+        "StationServices": [
+            "dock",
+            "autodock",
+            "commodities",
+            "contacts",
+            "exploration",
+            "missions",
+            "outfitting",
+            "crewlounge",
+            "rearm",
+            "refuel",
+            "repair",
+            "shipyard",
+            "tuning",
+            "engineer",
+            "missionsgenerated",
+            "flightcontroller",
+            "stationoperations",
+            "powerplay",
+            "searchrescue",
+            "stationMenu",
+            "shop",
+            "livery",
+            "socialspace",
+            "bartender",
+            "vistagenomics",
+            "pioneersupplies",
+            "apexinterstellar",
+            "frontlinesolutions"
+        ],
+        "StationType": "Coriolis",
+        "SystemAddress": 2557954953954,
+        "Taxi": false,
+        "event": "Docked",
+        "horizons": true,
+        "odyssey": true,
+        "timestamp": "2024-02-23T09:32:00Z"
+    }
+}{
+    "$schemaRef": "https://eddn.edcd.io/schemas/journal/1",
+    "header": {
+        "gamebuild": "r299332/r0 ",
+        "gameversion": "4.0.0.1701",
+        "gatewayTimestamp": "2024-02-23T09:32:08.360476Z",
+        "softwareName": "E:D Market Connector [Windows]",
+        "softwareVersion": "5.10.1",
+        "uploaderID": "fb6216cb3c3cb3b65070adbe68e3b255c20e7daa"
+    },
+    "message": {
+        "Body": "Isla 1",
+        "BodyType": "Planet",
+        "DistFromStarLS": 888.235048,
+        "LandingPads": {
+            "Large": 2,
+            "Medium": 2,
+            "Small": 4
+        },
+        "MarketID": 3501062400,
+        "Multicrew": false,
+        "StarPos": [
+            -140.8125,
+            -84.25,
+            -32.0625
+        ],
+        "StarSystem": "Isla",
+        "StationEconomies": [
+            {
+                "Name": "$economy_Extraction;",
+                "Proportion": 1.0
+            }
+        ],
+        "StationEconomy": "$economy_Extraction;",
+        "StationFaction": {
+            "Name": "DaVinci Corp."
+        },
+        "StationGovernment": "$government_Corporate;",
+        "StationName": "Dorsey Depot",
+        "StationServices": [
+            "dock",
+            "missions",
+            "rearm",
+            "refuel",
+            "repair",
+            "missionsgenerated",
+            "flightcontroller",
+            "stationoperations",
+            "stationMenu",
+            "shop",
+            "bartender",
+            "vistagenomics",
+            "pioneersupplies"
+        ],
+        "StationState": "UnderAttack",
+        "StationType": "CraterOutpost",
+        "SystemAddress": 2827959126371,
+        "Taxi": false,
+        "event": "Docked",
+        "horizons": true,
+        "odyssey": true,
+        "timestamp": "2024-02-23T09:32:07Z"
+    }
+}
