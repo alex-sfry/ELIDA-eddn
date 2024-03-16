@@ -74,7 +74,7 @@ class MarketData extends Model
         }
 
         // sql query 1st part - table, columns
-        $sql = 'INSERT INTO markets 
+        $sql = 'INSERT IGNORE INTO markets 
         (buy_price, demand, demand_bracket, mean_price,`name`,
         sell_price, stock, stock_bracket, market_id, `timestamp`) 
         VALUES';

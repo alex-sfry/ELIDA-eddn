@@ -1,11 +1,19 @@
 <?php
 
-require_once('../vendor/autoload.php');
-require_once('../components/DBConnect.php');
+use Core\Debug\Debug;
+use Core\Database\DBConnect;
+use JsonMachine\Items;
+use JsonMachine\Exception;
+
+require_once(ROOT . '/vendor/autoload.php');
 require_once('import_json_functions.php');
 
-$pdo = \Eddn\DBConnect::getConnection();
-$stations = JsonMachine\Items::fromFile('../json/stations.json');
+$pdo = (new DBConnect())->getConnection();
+try {
+    $stations = JsonMachine\Items::fromFile(ROOT . '/json/stations.json');
+} catch (Exception\InvalidArgumentException $e) {
+    Debug::d($e);
+}
 
 create_table_stations($pdo);
 
@@ -21,6 +29,8 @@ $economy_name = array_keys($query_economy[0])[1];
 
 $station_arr = [];
 $count = 0;
+
+/**@var Items $stations**/
 
 foreach ($stations as $station) {
     $allegiance_id = get_definition_id(
@@ -40,7 +50,7 @@ foreach ($stations as $station) {
         $station->secondEconomy,
         $economy_name
     );
-    
+
     $sys_arr[] = [
         (int)$station->id,
         (int)$station->marketId,
@@ -56,7 +66,9 @@ foreach ($stations as $station) {
 
     $count++;
 
-    if ($count === 5000) {
+
+
+    if ($count === 10000) {
         fill_table_stations($pdo, $sys_arr);
         $count = 0;
         unset($sys_arr);
@@ -64,6 +76,8 @@ foreach ($stations as $station) {
         // break;
     }
 }
+
+/**@var $sys_arr**/
 
 fill_table_stations($pdo, $sys_arr);
 

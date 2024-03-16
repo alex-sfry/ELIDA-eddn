@@ -1,11 +1,20 @@
 <?php
 
-require_once('../vendor/autoload.php');
-require_once('../components/DBConnect.php');
+use Core\Debug\Debug;
+use Core\Database\DBConnect;
+use JsonMachine\Items;
+use JsonMachine\Exception;
+
+require_once(ROOT . '/vendor/autoload.php');
 require_once('import_json_functions.php');
 
-$pdo = \Eddn\DBConnect::getConnection();
-$systems = JsonMachine\Items::fromFile('../json/systemsPopulated.json');
+$pdo =  (new DBConnect)->getConnection();
+
+try {
+    $systems = Items::fromFile(ROOT . '/json/systemsPopulated.json');
+} catch (Exception\InvalidArgumentException $e) {
+    Debug::d($e);
+}
 
 create_table_systems($pdo);
 
@@ -25,6 +34,8 @@ $economy_name = array_keys($query_economy[0])[1];
 
 $sys_arr = [];
 $count = 0;
+
+/**@var Items $systems**/
 
 foreach ($systems as $system) {
     $security_id = get_definition_id(
@@ -59,7 +70,7 @@ foreach ($systems as $system) {
 
     $count++;
 
-    if ($count === 1000) {
+    if ($count === 10000) {
         fill_table_sys($pdo, $sys_arr);
         $count = 0;
         unset($sys_arr);

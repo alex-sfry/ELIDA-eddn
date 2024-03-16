@@ -1,11 +1,13 @@
 <?php
 
 // namespace Eddn;
-// const ROOT = __DIR__;
-// require_once(ROOT . "/components/Autoload.php");
-// require_once('controllers/EddnController.php');
+ const ROOT = __DIR__;
 
-echo phpinfo();
+ require_once('utils/import_stations.php');
+
+// require_once(ROOT . "/components/Autoload.php");
+
+//echo phpinfo();
 
 // DBConnect::d(scandir(ROOT . "/controllers"));
 

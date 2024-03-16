@@ -36,12 +36,21 @@ while (true) {
             $json       = $message;
 
             // Validate
-            $validator = new Validator();
+            $validator_commodities = new Validator();
+            $validator_journal = new Validator();
+            $validator_outfitting = new Validator();
+
             $schema_validator = new SchemaValidator();
             $market_data = new MarketData();
 
-            if ($schema_validator->validateCommodities($validator, $json)) {
-                $market_data->addMarketData($json);
+//            if ($schema_validator->validateCommodities($validator_commodities, $json)) {
+////                $market_data->addMarketData($json);
+//            }
+//            if ($schema_validator->validateJournal($validator_journal, $json)) {
+//
+//            }
+            if ($schema_validator->validateOutfitting($validator_outfitting, $json)) {
+
             }
 
             //fwrite(STDOUT, $json . PHP_EOL);

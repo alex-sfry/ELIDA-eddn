@@ -1,5 +1,7 @@
 <?php
 
+use Core\Debug\Debug;
+
 function get_definition_id($query, $def_name, $key)
 {
     $not_found = null;
@@ -15,7 +17,7 @@ function get_definition_id($query, $def_name, $key)
     return $not_found;
 }
 
-function create_table_systems($pdo)
+function create_table_systems($pdo): void
 {
     $sql = "CREATE TABLE IF NOT EXISTS `systems`
             (`id` INT NOT NULL, `name` VARCHAR(255),
@@ -26,11 +28,9 @@ function create_table_systems($pdo)
     if ($pdo->query($sql)) {
         echo "table created / exists\n";
     } else echo "something went wrong\n";
-
-    return;
 }
 
-function create_table_stations($pdo)
+function create_table_stations($pdo): void
 {
     $sql = "CREATE TABLE IF NOT EXISTS `stations`
             (`id` INT NOT NULL, `market_id` BIGINT,
@@ -42,11 +42,9 @@ function create_table_stations($pdo)
     if ($pdo->query($sql)) {
         echo "table created / exists\n";
     } else echo "something went wrong\n";
-
-    return;
 }
 
-function fill_table_sys($pdo, $sys_arr)
+function fill_table_sys($pdo, $sys_arr): void
 {
     $paramArray = [];
     $sqlArray = [];
@@ -62,13 +60,23 @@ function fill_table_sys($pdo, $sys_arr)
         }
     }
 
-    $sql = "INSERT INTO `systems`
+    $sql = "INSERT INTO `systems2`
             (id, `name`, x, y, z, `population`,
             security_id, allegiance_id, economy_id)
             VALUES";
 
     $sql .= implode(',', $sqlArray);
 
+    $sql .= " ON DUPLICATE KEY UPDATE 
+                x=VALUES(x),
+                y=VALUES(y),
+                z=VALUES(z),
+                population=VALUES(population),
+                security_id=VALUES(security_id),
+                allegiance_id=VALUES(allegiance_id),
+                economy_id=VALUES(economy_id)
+                ";
+
     $query = $pdo->prepare($sql);
 
     if ($query->execute($paramArray)) {
@@ -76,11 +84,9 @@ function fill_table_sys($pdo, $sys_arr)
     } else echo var_dump($query->errorInfo()) . "\n";
 
     unset($paramArray, $sqlArray);
-    
-    return;
 }
 
-function fill_table_stations($pdo, $sys_arr)
+function fill_table_stations($pdo, $sys_arr): void
 {
     $paramArray = [];
     $sqlArray = [];
@@ -96,13 +102,24 @@ function fill_table_stations($pdo, $sys_arr)
         }
     }
 
-    $sql = "INSERT INTO stations
-            (id, market_id, system_id, `name`,
-            `type`, distance_to_arrival, government,
-            allegiance_id, 1_economy_id, 2_economy_id)
+    $sql = "INSERT INTO `stations2`
+            (id, market_id, system_id, name, type, distance_to_arrival,
+            government, allegiance_id, 1_economy_id, 2_economy_id)
             VALUES";
 
     $sql .= implode(',', $sqlArray);
+
+    $sql .= " ON DUPLICATE KEY UPDATE 
+                market_id=VALUES(market_id),
+                system_id=VALUES(system_id),
+                name=VALUES(name),
+                type=VALUES(type),
+                distance_to_arrival=VALUES(distance_to_arrival),
+                government=VALUES(government),
+                allegiance_id=VALUES(allegiance_id),
+                1_economy_id=VALUES(1_economy_id),
+                2_economy_id=VALUES(2_economy_id)
+                ";
 
     $query = $pdo->prepare($sql);
 
@@ -111,6 +128,4 @@ function fill_table_stations($pdo, $sys_arr)
     } else echo var_dump($query->errorInfo()) . "\n";
 
     unset($paramArray, $sqlArray);
-    
-    return;
 }
