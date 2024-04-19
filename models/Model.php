@@ -12,7 +12,7 @@ use Core\Database\DBConnect;
  */
 class Model
 {
-    private static ?PDO $connection;
+    private static $connection;
 
     public function __construct()
     {
