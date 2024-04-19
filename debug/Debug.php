@@ -14,7 +14,7 @@ class Debug
      * @param mixed $var
      * @return void
      */
-    public static function d(mixed $var): void
+    public static function d($var): void
     {
         if (is_array($var) || is_object($var)) {
             echo '<pre>';
@@ -29,7 +29,7 @@ class Debug
      * @param mixed $var
      * @return void
      */
-    public static function f(mixed $var): void
+    public static function f($var): void
     {
         ob_start();
         echo date('d-m-Y H:i:s') . PHP_EOL;

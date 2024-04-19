@@ -1,12 +1,14 @@
 <?php
 
-use Core\Model\MarketData;
-use JsonSchema\Validator;
-use Core\Helper\SchemaValidator;
-
 /**
  *  Configuration
  */
+
+use Core\Model\MarketData;
+use JsonSchema\Validator;
+use Core\Helper\SchemaValidator;
+use Core\Model\ShipModulesData;
+
 $relayEDDN              = 'tcp://eddn.edcd.io:9500';
 $timeoutEDDN            = 600000;
 
@@ -42,15 +44,16 @@ while (true) {
 
             $schema_validator = new SchemaValidator();
             $market_data = new MarketData();
+            $ship_modules = new ShipModulesData();
 
-//            if ($schema_validator->validateCommodities($validator_commodities, $json)) {
-////                $market_data->addMarketData($json);
-//            }
+            if ($schema_validator->validateCommodities($validator_commodities, $json)) {
+                $market_data->addMarketData($json);
+            }
 //            if ($schema_validator->validateJournal($validator_journal, $json)) {
 //
 //            }
             if ($schema_validator->validateOutfitting($validator_outfitting, $json)) {
-
+                $ship_modules->addShipModulesData($json);
             }
 
             //fwrite(STDOUT, $json . PHP_EOL);

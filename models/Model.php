@@ -12,7 +12,7 @@ use Core\Database\DBConnect;
  */
 class Model
 {
-    private static ?PDO $connection = null;
+    private static ?PDO $connection;
 
     public function __construct()
     {
@@ -34,7 +34,7 @@ class Model
      * @param array|null $params
      * @return bool|PDOStatement
      */
-    public function query(string $sql, array $params = null): bool|PDOStatement
+    public function query(string $sql, array $params): PDOStatement|bool
     {
         if (!$sql) {
             echo 'Empty SQL string';

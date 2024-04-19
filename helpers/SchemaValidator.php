@@ -25,7 +25,6 @@ class SchemaValidator
             return true;
             // file_put_contents('price2.json', $message);
             // die;
-
         } else {
             return false;
             // echo "JSON does not validate. Violations:\n";
@@ -49,11 +48,11 @@ class SchemaValidator
         if ($validator->isValid()) {
             echo "The supplied JSON validates against the JOURNALS schema.\n";
 
-          if ($data->message->event === 'Docked') {
-              echo "Docked\n";
-              file_put_contents('journal.json', $json, FILE_APPEND);
-              //             die();
-          }
+            if ($data->message->event === 'Docked') {
+                echo "Docked\n";
+                file_put_contents('journal.json', $json, FILE_APPEND);
+                //             die();
+            }
 
             return true;
         } else {
@@ -78,8 +77,7 @@ class SchemaValidator
 
         if ($validator->isValid()) {
             echo "The supplied JSON validates against the OUTFITTING schema.\n";
-
-            file_put_contents('outfitting.json', $json, FILE_APPEND);
+            // file_put_contents('outfitting.json', $json, FILE_APPEND);
             //             die();
 
             return true;
@@ -91,5 +89,4 @@ class SchemaValidator
             // }
         }
     }
-
 }
