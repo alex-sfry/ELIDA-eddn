@@ -3,16 +3,16 @@
 namespace Core\Model;
 
 /**
- * Class ShipModulesData
+ * Class ShipyardData
  */
-class ShipModulesData extends Model
+class ShipyardData extends Model
 {
     /**
      * @param string $json
      *
      * @return void
      */
-    public function addShipModulesData(string $json): void
+    public function addShipyardData(string $json): void
     {
         if (!$json) {
             echo "json is NULL\n";
@@ -20,19 +20,19 @@ class ShipModulesData extends Model
         }
 
         $json_data = json_decode($json, true);
-        $output = $json_data['message']['marketId'] . ' ' . count($json_data['message']['modules']);
+        $output = $json_data['message']['marketId'] . ' ' . count($json_data['message']['ships']);
         echo $output . "\n";
 
-        if (count($json_data['message']['modules']) < 1) {
+        if (count($json_data['message']['ships']) < 1) {
             return;
         }
 
-        $modules = [];
+        $ships = [];
 
-        foreach ($json_data['message']['modules'] as $i => $module) {
-            $modules[$i]['name'] = $module;
-            $modules[$i]['marketId'] = (int)$json_data['message']['marketId'];
-            $modules[$i]['timestamp'] = htmlspecialchars($json_data['message']['timestamp']);
+        foreach ($json_data['message']['ships'] as $i => $ship) {
+            $ships[$i]['name'] = $ship;
+            $ships[$i]['marketId'] = (int)$json_data['message']['marketId'];
+            $ships[$i]['timestamp'] = htmlspecialchars($json_data['message']['timestamp']);
         }
 
         unset($json_data);
@@ -40,7 +40,7 @@ class ShipModulesData extends Model
         $paramArray = [];
         $sqlArray = [];
 
-        foreach ($modules as $row) {
+        foreach ($ships as $row) {
             $sqlArray[] = '(' . implode(',', array_fill(0, count($row), '?')) . ')';
 
             // flatten source array
@@ -50,7 +50,7 @@ class ShipModulesData extends Model
         }
 
         // sql query 1st part - table, columns
-        $sql = 'INSERT IGNORE INTO ship_modules 
+        $sql = 'INSERT IGNORE INTO shipyard 
         (name, market_id, timestamp) 
         VALUES';
 

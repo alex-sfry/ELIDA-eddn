@@ -26,11 +26,8 @@ class SchemaValidator
             // file_put_contents('price2.json', $message);
             // die;
         } else {
-            return false;
             // echo "JSON does not validate. Violations:\n";
-            // foreach ($validator->getErrors() as $error) {
-            //     printf("[%s] %s\n", $error['property'], $error['message']);
-            // }
+            return false;
         }
     }
 
@@ -51,16 +48,12 @@ class SchemaValidator
             if ($data->message->event === 'Docked') {
                 echo "Docked\n";
                 file_put_contents('journal.json', $json, FILE_APPEND);
-                //             die();
             }
 
             return true;
         } else {
-            return false;
             // echo "JSON does not validate. Violations:\n";
-            // foreach ($validator->getErrors() as $error) {
-            //     printf("[%s] %s\n", $error['property'], $error['message']);
-            // }
+            return false;
         }
     }
 
@@ -78,15 +71,38 @@ class SchemaValidator
         if ($validator->isValid()) {
             echo "The supplied JSON validates against the OUTFITTING schema.\n";
             // file_put_contents('outfitting.json', $json, FILE_APPEND);
-            //             die();
 
             return true;
         } else {
-            return false;
             // echo "JSON does not validate. Violations:\n";
-            // foreach ($validator->getErrors() as $error) {
-            //     printf("[%s] %s\n", $error['property'], $error['message']);
+            return false;
+        }
+    }
+
+    /**
+     * @param \JsonSchema\Validator $validator
+     * @param string $json
+     *
+     * @return bool
+     */
+    public function validateShipyard(Validator $validator, string $json): bool
+    {
+        $data = json_decode($json);
+        $validator->validate($data, (object)['$ref' => 'file://' . realpath('shipyard_schema.json')]);
+
+        if ($validator->isValid()) {
+            echo "The supplied JSON validates against the SHIPYARD schema.\n";
+            // file_put_contents('shipyard.json', $json, FILE_APPEND);
+
+            // if ($data->message->event === 'Docked') {
+            //     echo "Docked\n";
+            //     file_put_contents('journal.json', $json, FILE_APPEND);
             // }
+
+            return true;
+        } else {
+            // echo "JSON does not validate. Violations:\n";
+            return false;
         }
     }
 }

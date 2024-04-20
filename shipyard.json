@@ -1,0 +1,120 @@
+{
+    "$schemaRef": "https://eddn.edcd.io/schemas/shipyard/2",
+    "header": {
+        "gamebuild": "",
+        "gameversion": "CAPI-Live-shipyard",
+        "gatewayTimestamp": "2024-04-20T12:22:36.293626Z",
+        "softwareName": "EDDiscovery",
+        "softwareVersion": "17.0.4.0",
+        "uploaderID": "9dde8e408a62cabeec94deef83e1cc73e3bb6aad"
+    },
+    "message": {
+        "horizons": true,
+        "marketId": 3228474880,
+        "odyssey": true,
+        "ships": [
+            "SideWinder",
+            "CobraMkIII",
+            "Viper",
+            "Hauler",
+            "Viper_MkIV",
+            "Python",
+            "Eagle",
+            "DiamondBack",
+            "DiamondBackXL",
+            "Type9",
+            "Adder",
+            "Anaconda",
+            "Independant_Trader"
+        ],
+        "stationName": "Tanner City",
+        "systemName": "V886 Centauri",
+        "timestamp": "2024-04-20T12:22:29.083Z"
+    }
+}{
+    "$schemaRef": "https://eddn.edcd.io/schemas/shipyard/2",
+    "header": {
+        "gamebuild": "",
+        "gameversion": "CAPI-Live-shipyard",
+        "gatewayTimestamp": "2024-04-20T12:22:38.972010Z",
+        "softwareName": "E:D Market Connector [Windows]",
+        "softwareVersion": "5.10.4",
+        "uploaderID": "9cea18a924f97b30bff71d19e9f7350ee88aa75c"
+    },
+    "message": {
+        "horizons": true,
+        "marketId": 3703862016,
+        "odyssey": true,
+        "ships": [
+            "eagle",
+            "vulture"
+        ],
+        "stationName": "K3T-T3Y",
+        "systemName": "Col 285 Sector TS-Z b14-2",
+        "timestamp": "2024-04-20T12:22:38Z"
+    }
+}{
+    "$schemaRef": "https://eddn.edcd.io/schemas/shipyard/2",
+    "header": {
+        "gamebuild": "",
+        "gameversion": "CAPI-Live-shipyard",
+        "gatewayTimestamp": "2024-04-20T12:22:40.450924Z",
+        "softwareName": "E:D Market Connector [Windows]",
+        "softwareVersion": "5.10.4",
+        "uploaderID": "35d97757e7409a69ba9005a717c6c56486861f99"
+    },
+    "message": {
+        "horizons": true,
+        "marketId": 3225761024,
+        "odyssey": true,
+        "ships": [
+            "adder",
+            "anaconda",
+            "cobramkiii",
+            "eagle",
+            "hauler",
+            "independant_trader",
+            "sidewinder",
+            "type6",
+            "type7",
+            "type9",
+            "viper",
+            "viper_mkiv"
+        ],
+        "stationName": "Byrd Station",
+        "systemName": "BD-17 5832",
+        "timestamp": "2024-04-20T12:22:39Z"
+    }
+}{
+    "$schemaRef": "https://eddn.edcd.io/schemas/shipyard/2",
+    "header": {
+        "gamebuild": "",
+        "gameversion": "CAPI-Live-shipyard",
+        "gatewayTimestamp": "2024-04-20T12:22:54.741486Z",
+        "softwareName": "E:D Market Connector [Windows]",
+        "softwareVersion": "5.10.4",
+        "uploaderID": "0b06647a7b3984c4ad7d59da6a33a48d77d38ded"
+    },
+    "message": {
+        "horizons": true,
+        "marketId": 3223891200,
+        "odyssey": false,
+        "ships": [
+            "adder",
+            "cobramkiii",
+            "eagle",
+            "federation_dropship",
+            "federation_dropship_mkii",
+            "federation_gunship",
+            "hauler",
+            "independant_trader",
+            "sidewinder",
+            "type6",
+            "type9",
+            "viper"
+        ],
+        "stationName": "Volterra Horizons",
+        "systemName": "Mitra",
+        "timestamp": "2024-04-20T12:22:51Z"
+    }
+}
