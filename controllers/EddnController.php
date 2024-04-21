@@ -5,6 +5,7 @@ use JsonSchema\Validator;
 use Core\Helper\SchemaValidator;
 use Core\Model\ShipModulesData;
 use Core\Model\ShipyardData;
+use Core\Model\StationData;
 
 $relayEDDN              = 'tcp://eddn.edcd.io:9500';
 $timeoutEDDN            = 600000;
@@ -18,6 +19,12 @@ $subscriber = $context->getSocket(ZMQ::SOCKET_SUB);
 
 $subscriber->setSockOpt(ZMQ::SOCKOPT_SUBSCRIBE, "");
 $subscriber->setSockOpt(ZMQ::SOCKOPT_RCVTIMEO, $timeoutEDDN);
+
+$schema_validator = new SchemaValidator();
+$market_data = new MarketData();
+$ship_modules = new ShipModulesData();
+$shipyard = new ShipyardData();
+$station = new StationData();
 
 while (true) {
     try {
@@ -35,25 +42,21 @@ while (true) {
             $json       = $message;
 
             // Validate
-            $validator_commodities = new Validator();
-            $validator_journal = new Validator();
-            $validator_outfitting = new Validator();
-            $validator_shipyard = new Validator();
+            // $validator_commodities = new Validator();
+            // $validator_journal = new Validator();
+            // $validator_outfitting = new Validator();
+            // $validator_shipyard = new Validator();
 
-            $schema_validator = new SchemaValidator();
-            $market_data = new MarketData();
-            $ship_modules = new ShipModulesData();
-            $shipyard = new ShipyardData();
-
-            if ($schema_validator->validateCommodities($validator_commodities, $json)) {
+            if ($schema_validator->validateCommodities(/* $validator_commodities,  */$json)) {
                 $market_data->addMarketData($json);
             }
-            if ($schema_validator->validateOutfitting($validator_outfitting, $json)) {
+            if ($schema_validator->validateOutfitting(/* $validator_outfitting,  */$json)) {
                 $ship_modules->addShipModulesData($json);
             }
-            // if ($schema_validator->validateJournal($validator_journal, $json)) {
-            // }
-            if ($schema_validator->validateShipyard($validator_shipyard, $json)) {
+            if ($schema_validator->validateJournal(/* $validator_journal,  */$json)) {
+                $station->addStationData($json);
+            }
+            if ($schema_validator->validateShipyard(/* $validator_shipyard,  */$json)) {
                 $shipyard->addShipyardData($json);
             }
 

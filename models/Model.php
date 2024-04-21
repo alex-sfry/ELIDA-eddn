@@ -32,6 +32,7 @@ class Model
     /**
      * @param string $sql
      * @param array|null $params
+     *
      * @return bool|PDOStatement
      */
     public function query(string $sql, array $params): PDOStatement|bool
