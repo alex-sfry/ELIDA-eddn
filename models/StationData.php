@@ -43,11 +43,6 @@ class StationData extends Model
         }
     }
 
-    /**
-     * @param string $json
-     *
-     * @return void
-     */
     public function addStationData(string $json): void
     {
         if (!$json) {
@@ -89,18 +84,8 @@ class StationData extends Model
         $query->execute($paramArray);
 
         echo 'added / updated ' . $query->rowCount() . "rows\n";
-
-        if ($query->rowCount() === 0) {
-            $err = $query->errorInfo()[2];
-            echo $err . "\n";
-        }
     }
 
-    /**
-     * @param array $data
-     *
-     * @return array
-     */
     private function prepData(array $data): array
     {
         $result['dist_from_star'] = isset($data['DistFromStarLS']) ? (int)round((float)$data['DistFromStarLS']) : null;

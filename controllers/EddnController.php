@@ -6,6 +6,7 @@ use Core\Helper\SchemaValidator;
 use Core\Model\ShipModulesData;
 use Core\Model\ShipyardData;
 use Core\Model\StationData;
+use Core\Model\SystemData;
 
 $relayEDDN              = 'tcp://eddn.edcd.io:9500';
 $timeoutEDDN            = 600000;
@@ -25,6 +26,7 @@ $market_data = new MarketData();
 $ship_modules = new ShipModulesData();
 $shipyard = new ShipyardData();
 $station = new StationData();
+$system = new SystemData();
 
 while (true) {
     try {
@@ -41,22 +43,28 @@ while (true) {
             $message    = zlib_decode($message);
             $json       = $message;
 
-            // Validate
+            /**
+             * Validate
+             */
             // $validator_commodities = new Validator();
             // $validator_journal = new Validator();
+            // $validator_journal_location = new Validator();
             // $validator_outfitting = new Validator();
             // $validator_shipyard = new Validator();
 
-            if ($schema_validator->validateCommodities(/* $validator_commodities,  */$json)) {
+            if ($schema_validator->validateCommodities($json)) {
                 $market_data->addMarketData($json);
             }
-            if ($schema_validator->validateOutfitting(/* $validator_outfitting,  */$json)) {
+            if ($schema_validator->validateOutfitting($json)) {
                 $ship_modules->addShipModulesData($json);
             }
-            if ($schema_validator->validateJournal(/* $validator_journal,  */$json)) {
+            if ($schema_validator->validateJournal($json)) {
                 $station->addStationData($json);
             }
-            if ($schema_validator->validateShipyard(/* $validator_shipyard,  */$json)) {
+            if ($schema_validator->validateJournalLocation($json)) {
+                $system->addSystemData($json);
+            }
+            if ($schema_validator->validateShipyard($json)) {
                 $shipyard->addShipyardData($json);
             }
 

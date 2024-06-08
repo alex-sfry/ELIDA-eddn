@@ -14,7 +14,7 @@ class Debug
      * @param mixed $var
      * @return void
      */
-    public static function d($var): void
+    public static function d($var, $die = true): void
     {
         if (is_array($var) || is_object($var)) {
             echo '<pre>';
@@ -23,6 +23,8 @@ class Debug
         } else {
             echo $var . '<br>';
         }
+
+        die();
     }
 
     /**

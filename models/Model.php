@@ -21,21 +21,12 @@ class Model
         }
     }
 
-    /**
-     * @return PDO
-     */
     public function getConnection(): PDO
     {
         return self::$connection;
     }
 
-    /**
-     * @param string $sql
-     * @param array|null $params
-     *
-     * @return bool|PDOStatement
-     */
-    public function query(string $sql, array $params): PDOStatement|bool
+    public function query(string $sql, array $params): PDOStatement/* |bool */
     {
         if (!$sql) {
             echo 'Empty SQL string';

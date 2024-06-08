@@ -14,11 +14,6 @@ class MarketData extends Model
         'id'
     ];
 
-    /**
-     * @param string $json
-     *
-     * @return void
-     */
     public function addMarketData(string $json): void
     {
         if (!$json) {
@@ -103,10 +98,5 @@ class MarketData extends Model
         $query->execute($paramArray);
 
         echo 'added / updated ' . $query->rowCount() . "rows\n";
-
-        if ($query->rowCount() === 0) {
-            $err = $query->errorInfo()[2];
-            echo $err . "\n";
-        }
     }
 }

@@ -7,11 +7,6 @@ namespace Core\Model;
  */
 class ShipyardData extends Model
 {
-    /**
-     * @param string $json
-     *
-     * @return void
-     */
     public function addShipyardData(string $json): void
     {
         if (!$json) {
@@ -65,10 +60,5 @@ class ShipyardData extends Model
         $query->execute($paramArray);
 
         echo 'added / updated ' . $query->rowCount() . "rows\n";
-
-        if ($query->rowCount() === 0) {
-            $err = $query->errorInfo()[2];
-            echo $err . "\n";
-        }
     }
 }

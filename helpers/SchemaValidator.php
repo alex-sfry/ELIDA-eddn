@@ -10,12 +10,7 @@ use JsonSchema\Validator;
  */
 class SchemaValidator
 {
-    /**
-     * @param Validator $validator
-     * @param string $json
-     * @return bool
-     */
-    public function validateCommodities(/* Validator $validator, */ string $json): bool
+    public function validateCommodities(string $json): bool
     {
         $validator = new Validator();
         $data = json_decode($json);
@@ -34,13 +29,7 @@ class SchemaValidator
         }
     }
 
-    /**
-     * @param \JsonSchema\Validator $validator
-     * @param string $json
-     *
-     * @return bool
-     */
-    public function validateJournal(/* Validator $validator,  */string $json): bool
+    public function validateJournal(string $json): bool
     {
         $validator = new Validator();
         $data = json_decode($json);
@@ -63,13 +52,30 @@ class SchemaValidator
         }
     }
 
-    /**
-     * @param \JsonSchema\Validator $validator
-     * @param string $json
-     *
-     * @return bool
-     */
-    public function validateOutfitting(/* Validator $validator,  */string $json): bool
+    public function validateJournalLocation(string $json): bool
+    {
+        $validator = new Validator();
+        $data = json_decode($json);
+        $validator->validate($data, (object)['$ref' => 'file://' . realpath('journal_schema.json')]);
+
+        if ($validator->isValid()) {
+            if ($data->message->event === 'Location') {
+                echo "The supplied JSON validates against the JOURNALS schema (Location event).\n";
+                // file_put_contents('journal.json', $json, FILE_APPEND);
+                unset($validator);
+                return true;
+            } else {
+                unset($validator);
+                return false;
+            }
+        } else {
+            unset($validator);
+            // echo "JSON does not validate. Violations:\n";
+            return false;
+        }
+    }
+
+    public function validateOutfitting(string $json): bool
     {
         $validator = new Validator();
         $data = json_decode($json);
@@ -87,13 +93,7 @@ class SchemaValidator
         }
     }
 
-    /**
-     * @param \JsonSchema\Validator $validator
-     * @param string $json
-     *
-     * @return bool
-     */
-    public function validateShipyard(/* Validator $validator,  */string $json): bool
+    public function validateShipyard(string $json): bool
     {
         $validator = new Validator();
         $data = json_decode($json);
