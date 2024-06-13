@@ -4,3 +4,4 @@ vendor
 json
 listener.code-workspace
 setPHP72.ps1
+journal.json
