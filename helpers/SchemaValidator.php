@@ -75,6 +75,29 @@ class SchemaValidator
         }
     }
 
+    public function validateJournalRings(string $json): bool
+    {
+        $validator = new Validator();
+        $data = json_decode($json);
+        $validator->validate($data, (object)['$ref' => 'file://' . realpath('journal_schema.json')]);
+
+        if ($validator->isValid()) {
+            if (isset($data->message->Rings) && isset($data->message->ReserveLevel)) {
+                echo "The supplied JSON validates against the JOURNALS schema (Rings).\n";
+                // file_put_contents('journal.json', $json, FILE_APPEND);
+                unset($validator);
+                return true;
+            } else {
+                unset($validator);
+                return false;
+            }
+        } else {
+            unset($validator);
+            // echo "JSON does not validate. Violations:\n";
+            return false;
+        }
+    }
+
     public function validateOutfitting(string $json): bool
     {
         $validator = new Validator();

@@ -1,8 +1,8 @@
 <?php
 
 use Core\Model\MarketData;
-use JsonSchema\Validator;
 use Core\Helper\SchemaValidator;
+use Core\Model\RingsData;
 use Core\Model\ShipModulesData;
 use Core\Model\ShipyardData;
 use Core\Model\StationData;
@@ -27,6 +27,7 @@ $ship_modules = new ShipModulesData();
 $shipyard = new ShipyardData();
 $station = new StationData();
 $system = new SystemData();
+$rings = new RingsData();
 
 while (true) {
     try {
@@ -46,11 +47,6 @@ while (true) {
             /**
              * Validate
              */
-            // $validator_commodities = new Validator();
-            // $validator_journal = new Validator();
-            // $validator_journal_location = new Validator();
-            // $validator_outfitting = new Validator();
-            // $validator_shipyard = new Validator();
 
             if ($schema_validator->validateCommodities($json)) {
                 $market_data->addMarketData($json);
@@ -63,6 +59,9 @@ while (true) {
             }
             if ($schema_validator->validateJournalLocation($json)) {
                 $system->addSystemData($json);
+            }
+            if ($schema_validator->validateJournalRings($json)) {
+                $rings->addRingsData($json);
             }
             if ($schema_validator->validateShipyard($json)) {
                 $shipyard->addShipyardData($json);
