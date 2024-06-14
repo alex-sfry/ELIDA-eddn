@@ -47,6 +47,12 @@ class RingsData extends Model
                 $this->ring_types[$row['RingClass']] : null;
             $result['system_name'] = isset($data['StarSystem']) && $data['StarSystem'] ?
                 $data['StarSystem'] : null;
+            $result['x'] = isset($data['StarPos']) && is_array($data['StarPos']) && count($data['StarPos']) === 3 ?
+                $data['StarPos'][0] : null;
+            $result['y'] = isset($data['StarPos']) && is_array($data['StarPos']) && count($data['StarPos']) === 3 ?
+                $data['StarPos'][1] : null;
+            $result['z'] = isset($data['StarPos']) && is_array($data['StarPos']) && count($data['StarPos']) === 3 ?
+                $data['StarPos'][2] : null;
             $result['distance_to_arrival'] = isset($data['DistanceFromArrivalLS']) && $data['DistanceFromArrivalLS'] ?
                 (int)$data['DistanceFromArrivalLS'] : null;
             $result['body_name'] = isset($data['BodyName']) && $data['BodyName'] ?
@@ -65,14 +71,14 @@ class RingsData extends Model
         }
 
         $sql = "INSERT INTO `rings`
-        (name, type, system_name, distance_to_arrival, body_name, reserve, timestamp)
+        (name, type, system_name, x, y, z, distance_to_arrival, body_name, reserve, timestamp)
         VALUES";
 
         $sql .= implode(',', $sqlArray);
 
         // sql query 3rd part - columns to update
         $sql .= "ON DUPLICATE KEY UPDATE
-                type=VALUES(type), system_name=VALUES(system_name),
+                type=VALUES(type), system_name=VALUES(system_name), x=VALUES(x), y=VALUES(y), z=VALUES(z),
                 distance_to_arrival=VALUES(distance_to_arrival), body_name=VALUES(body_name),
                 reserve=VALUES(reserve), timestamp=VALUES(timestamp)
                 ";
