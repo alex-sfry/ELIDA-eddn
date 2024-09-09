@@ -60,9 +60,9 @@ while (true) {
             if ($schema_validator->validateJournalLocation($json)) {
                 $system->addSystemData($json);
             }
-            if ($schema_validator->validateJournalRings($json)) {
-                $rings->addRingsData($json);
-            }
+            // if ($schema_validator->validateJournalRings($json)) {
+            //     $rings->addRingsData($json);
+            // }
             if ($schema_validator->validateShipyard($json)) {
                 $shipyard->addShipyardData($json);
             }
