@@ -9,12 +9,12 @@ use Core\Debug\Debug;
  */
 class RingsData extends Model
 {
-    // private $ring_types = [
-    //     'eRingClass_Icy' => 'Icy',
-    //     'eRingClass_Metalic' => 'Metallic',
-    //     'eRingClass_MetalRich' => 'Metal Rich',
-    //     'eRingClass_Rocky' => 'Rocky'
-    // ];
+    private $ring_types = [
+        'eRingClass_Icy' => 'Icy',
+        'eRingClass_Metalic' => 'Metallic',
+        'eRingClass_MetalRich' => 'Metal Rich',
+        'eRingClass_Rocky' => 'Rocky'
+    ];
 
     public function addRingsData(string $json): void
     {
@@ -50,11 +50,8 @@ class RingsData extends Model
 
             $result['name'] = isset($row['Name']) && $row['Name'] ?
                 $row['Name'] : null;
-            $result['type'] = 'Metallic';
-
-            // $result['type'] = isset($row['RingClass']) && $row['RingClass'] ?
-            //     $this->ring_types[$row['RingClass']] : null;
-
+            $result['type'] = isset($row['RingClass']) && $row['RingClass'] ?
+                $this->ring_types[$row['RingClass']] : null;
             $result['system_name'] = isset($data['StarSystem']) && $data['StarSystem'] ?
                 $data['StarSystem'] : null;
             $result['x'] = isset($data['StarPos']) && is_array($data['StarPos']) && count($data['StarPos']) === 3 ?
@@ -75,10 +72,15 @@ class RingsData extends Model
 
         $sqlArray[] = '(' . implode(',', array_fill(0, count($result), '?')) . ')';
 
+        Debug::f($sqlArray);
+        Debug::f($paramArray);
+
         // flatten source array
         foreach ($result as $element) {
             $paramArray[] = $element;
         }
+
+        Debug::f($paramArray);
 
         $sql = "INSERT INTO `rings`
         (name, type, system_name, x, y, z, distance_to_arrival, body_name, reserve, timestamp)
