@@ -41,12 +41,12 @@ class RingsData extends Model
         $result = [];
 
         foreach ($data['Rings'] as $row) {
-            if (!isset($row['RingClass'])) {
-                return;
-            }
-            if ($row['RingClass'] !== 'eRingClass_Metalic') {
-                continue;
-            }
+            // if (!isset($row['RingClass'])) {
+            //     return;
+            // }
+            // if ($row['RingClass'] !== 'eRingClass_Metalic') {
+            //     continue;
+            // }
 
             $result['name'] = isset($row['Name']) && $row['Name'] ?
                 $row['Name'] : null;
