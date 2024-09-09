@@ -82,7 +82,7 @@ class RingsData extends Model
 
         Debug::f($paramArray);
 
-        $sql = "INSERT INTO `rings`
+        $sql = "INSERT IGNORE INTO `rings`
         (name, type, system_name, x, y, z, distance_to_arrival, body_name, reserve, timestamp)
         VALUES";
 
@@ -90,10 +90,11 @@ class RingsData extends Model
 
         // sql query 3rd part - columns to update
         $sql .= "ON DUPLICATE KEY UPDATE
-                name=VALUES(name), type=VALUES(type), system_name=VALUES(system_name), x=VALUES(x), y=VALUES(y),
-                z=VALUES(z), distance_to_arrival=VALUES(distance_to_arrival), body_name=VALUES(body_name),
+                type=VALUES(type), system_name=VALUES(system_name), x=VALUES(x), y=VALUES(y), z=VALUES(z),
+                distance_to_arrival=VALUES(distance_to_arrival), body_name=VALUES(body_name),
                 reserve=VALUES(reserve), timestamp=VALUES(timestamp)
                 ";
+
 
         $query = self::getConnection()->prepare($sql);
         $query->execute($paramArray);
