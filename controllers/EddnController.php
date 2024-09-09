@@ -54,12 +54,12 @@ while (true) {
             if ($schema_validator->validateOutfitting($json)) {
                 $ship_modules->addShipModulesData($json);
             }
-            if ($schema_validator->validateJournal($json)) {
-                $station->addStationData($json);
-            }
-            if ($schema_validator->validateJournalLocation($json)) {
-                $system->addSystemData($json);
-            }
+            // if ($schema_validator->validateJournal($json)) {
+            //     $station->addStationData($json);
+            // }
+            // if ($schema_validator->validateJournalLocation($json)) {
+            //     $system->addSystemData($json);
+            // }
             if ($schema_validator->validateJournalRings($json)) {
                 $rings->addRingsData($json);
             }

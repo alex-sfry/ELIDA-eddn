@@ -40,14 +40,17 @@ class RingsData extends Model
         $sqlArray = [];
         $result = [];
 
-        foreach ($data['Rings'] as $row) {
-            if (!isset($row['RingClass'])) {
-                continue;
+        foreach ($data['Rings'] as $key => $value) {
+            if (!isset($value['RingClass']) || $value['RingClass'] !== 'eRingClass_Metalic') {
+                unset($data['Rings'][$key]);
             }
-            if ($row['RingClass'] !== 'eRingClass_Metalic') {
-                continue;
-            }
+        }
 
+        if (empty($data['Rings'])) {
+            return;
+        }
+
+        foreach ($data['Rings'] as $row) {
             $result['name'] = isset($row['Name']) && $row['Name'] ?
                 $row['Name'] : null;
             $result['type'] = isset($row['RingClass']) && $row['RingClass'] ?
@@ -72,15 +75,10 @@ class RingsData extends Model
 
         $sqlArray[] = '(' . implode(',', array_fill(0, count($result), '?')) . ')';
 
-        Debug::f($sqlArray);
-        Debug::f($paramArray);
-
         // flatten source array
         foreach ($result as $element) {
             $paramArray[] = $element;
         }
-
-        Debug::f($paramArray);
 
         $sql = "INSERT IGNORE INTO `rings`
         (name, type, system_name, x, y, z, distance_to_arrival, body_name, reserve, timestamp)
