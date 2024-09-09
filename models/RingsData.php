@@ -9,12 +9,12 @@ use Core\Debug\Debug;
  */
 class RingsData extends Model
 {
-    private $ring_types = [
-        'eRingClass_Icy' => 'Icy',
-        'eRingClass_Metalic' => 'Metallic',
-        'eRingClass_MetalRich' => 'Metal Rich',
-        'eRingClass_Rocky' => 'Rocky'
-    ];
+    // private $ring_types = [
+    //     'eRingClass_Icy' => 'Icy',
+    //     'eRingClass_Metalic' => 'Metallic',
+    //     'eRingClass_MetalRich' => 'Metal Rich',
+    //     'eRingClass_Rocky' => 'Rocky'
+    // ];
 
     public function addRingsData(string $json): void
     {
@@ -41,10 +41,20 @@ class RingsData extends Model
         $result = [];
 
         foreach ($data['Rings'] as $row) {
+            if (!isset($row['RingClass'])) {
+                return;
+            }
+            if ($row['RingClass'] !== 'eRingClass_Metalic') {
+                continue;
+            }
+
             $result['name'] = isset($row['Name']) && $row['Name'] ?
                 $row['Name'] : null;
-            $result['type'] = isset($row['RingClass']) && $row['RingClass'] ?
-                $this->ring_types[$row['RingClass']] : null;
+            $result['type'] = 'Metallic';
+
+            // $result['type'] = isset($row['RingClass']) && $row['RingClass'] ?
+            //     $this->ring_types[$row['RingClass']] : null;
+
             $result['system_name'] = isset($data['StarSystem']) && $data['StarSystem'] ?
                 $data['StarSystem'] : null;
             $result['x'] = isset($data['StarPos']) && is_array($data['StarPos']) && count($data['StarPos']) === 3 ?
