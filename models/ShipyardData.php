@@ -24,9 +24,11 @@ class ShipyardData extends Model
 
         $ships = [];
 
+        $market_id = (int)$json_data['message']['marketId'];
+
         foreach ($json_data['message']['ships'] as $i => $ship) {
             $ships[$i]['name'] = $ship;
-            $ships[$i]['marketId'] = (int)$json_data['message']['marketId'];
+            $ships[$i]['marketId'] = $market_id;
             $ships[$i]['timestamp'] = htmlspecialchars($json_data['message']['timestamp']);
         }
 
@@ -53,12 +55,20 @@ class ShipyardData extends Model
         $sql .= implode(',', $sqlArray);
 
         // sql query 3rd part - columns to update
-        $sql .= "ON DUPLICATE KEY UPDATE 
-                timestamp=VALUES(timestamp)";
+        // $sql .= "ON DUPLICATE KEY UPDATE
+        //         timestamp=VALUES(timestamp)";
+
+        // delete previous records for station
+        $sql_del = 'DELETE FROM shipyard
+        WHERE market_id=:market_id';
+        $query = self::getConnection()->prepare($sql_del);
+        $query->bindParam(':market_id', $market_id, \PDO::PARAM_INT);
+        $query->execute();
+        echo 'deleted ' . $query->rowCount() . "rows\n";
 
         $query = self::getConnection()->prepare($sql);
         $query->execute($paramArray);
 
-        echo 'added / updated ' . $query->rowCount() . "rows\n";
+        echo 'added ' . $query->rowCount() . "rows\n";
     }
 }

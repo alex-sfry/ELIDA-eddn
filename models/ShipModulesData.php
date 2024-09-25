@@ -23,10 +23,11 @@ class ShipModulesData extends Model
         }
 
         $modules = [];
+        $market_id = (int)$json_data['message']['marketId'];
 
         foreach ($json_data['message']['modules'] as $i => $module) {
             $modules[$i]['name'] = $module;
-            $modules[$i]['marketId'] = (int)$json_data['message']['marketId'];
+            $modules[$i]['marketId'] = $market_id;
             $modules[$i]['timestamp'] = htmlspecialchars($json_data['message']['timestamp']);
         }
 
@@ -53,12 +54,20 @@ class ShipModulesData extends Model
         $sql .= implode(',', $sqlArray);
 
         // sql query 3rd part - columns to update
-        $sql .= "ON DUPLICATE KEY UPDATE 
-                timestamp=VALUES(timestamp)";
+        // $sql .= "ON DUPLICATE KEY UPDATE
+        //         timestamp=VALUES(timestamp)";
+
+        // delete previous records for station
+        $sql_del = 'DELETE FROM ship_modules
+        WHERE market_id=:market_id';
+        $query = self::getConnection()->prepare($sql_del);
+        $query->bindParam(':market_id', $market_id, \PDO::PARAM_INT);
+        $query->execute();
+        echo 'deleted ' . $query->rowCount() . "rows\n";
 
         $query = self::getConnection()->prepare($sql);
         $query->execute($paramArray);
 
-        echo 'added / updated ' . $query->rowCount() . "rows\n";
+        echo 'added ' . $query->rowCount() . "rows\n";
     }
 }
