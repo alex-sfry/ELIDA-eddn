@@ -54,10 +54,6 @@ class ShipyardData extends Model
         // sql query 2nd part - placeholders
         $sql .= implode(',', $sqlArray);
 
-        // sql query 3rd part - columns to update
-        // $sql .= "ON DUPLICATE KEY UPDATE
-        //         timestamp=VALUES(timestamp)";
-
         // delete previous records for station
         $sql_del = 'DELETE FROM shipyard
         WHERE market_id=:market_id';
