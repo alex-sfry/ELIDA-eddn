@@ -43,47 +43,79 @@ class StationData extends Model
         }
     }
 
-    public function addStationData(string $json): void
+    public function addStationData(string $json): bool
     {
         if (!$json) {
             echo "json is NULL\n";
-            return;
+            return false;
         }
 
         $json_data = json_decode($json, true);
         $data = $this->prepData($json_data['message']);
         // Debug::d($data);
 
+        $market_id = (int)$data['market_id'];
+
         if (in_array(null, array_values($data))) {
-            return;
+            return false;
         }
 
-        $paramArray = [];
-        $sqlArray = '(' . implode(',', array_fill(0, count($data), '?')) . ')';
+        $sql_rec_exist = "SELECT EXISTS(SELECT 1 FROM `stations` WHERE market_id=:market_id)";
+        $query = self::getConnection()->prepare($sql_rec_exist);
+        $query->bindParam(":market_id", $market_id, \PDO::PARAM_INT);
+        $query->execute();
+        $exists = $query->fetchColumn();
+        echo 'exists - ' . $exists . "\n";
 
-        foreach ($data as $element) {
-            $paramArray[] = $element;
+        if ($exists) {
+            $sql = "UPDATE `stations`
+                    SET distance_to_arrival=:dta, name=:name, type=:type, government=:gov, allegiance_id=:allegiance,
+                    economy_id_1=:economy_1, economy_id_2=:economy_2, system_id=:system_id
+                    WHERE market_id=:market_id";
+
+            $pdo = self::getConnection();
+            $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+
+            $query = $pdo->prepare($sql);
+
+            $query->bindParam(':dta', $data['dist_from_star'], \PDO::PARAM_INT);
+            $query->bindParam(':name', $data['name'], \PDO::PARAM_STR);
+            $query->bindParam(':type', $data['type'], \PDO::PARAM_STR);
+            $query->bindParam(':gov', $data['gov'], \PDO::PARAM_STR);
+            $query->bindParam(':allegiance', $data['allegiance'], \PDO::PARAM_INT);
+            $query->bindParam(':economy_1', $data['economy_1'], \PDO::PARAM_INT);
+            $query->bindParam(':economy_2', $data['economy_2'], \PDO::PARAM_INT);
+            $query->bindParam(':system_id', $data['system_id'], \PDO::PARAM_INT);
+            $query->bindParam(':market_id', $market_id, \PDO::PARAM_INT);
+            $query->execute();
+
+            echo 'updated ' . $query->rowCount() . "rows\n";
+            unset($pdo);
+            unset($query);
+
+            return true;
+        } else {
+            $paramArray = [];
+            $sqlArray = '(' . implode(',', array_fill(0, count($data), '?')) . ')';
+
+            foreach ($data as $element) {
+                $paramArray[] = $element;
+            }
+
+            // sql query 1st part - table, columns
+            $sql = 'INSERT IGNORE INTO `stations`
+            (distance_to_arrival, name, type, market_id, government,
+            allegiance_id, economy_id_1, economy_id_2, system_id)
+            VALUES ';
+
+            $sql .= $sqlArray;
+
+            $query = self::getConnection()->prepare($sql);
+            $query->execute($paramArray);
+            echo 'added ' . $query->rowCount() . "rows\n";
+
+            return true;
         }
-
-        // sql query 1st part - table, columns
-        $sql = 'INSERT IGNORE INTO `stations`
-        (distance_to_arrival, name, type, market_id, government,
-        allegiance_id, economy_id_1, economy_id_2, system_id)
-        VALUES ';
-
-        $sql .= $sqlArray;
-
-        // sql query 3rd part - columns to update
-        $sql .= "ON DUPLICATE KEY UPDATE
-                distance_to_arrival=VALUES(distance_to_arrival), name=VALUES(name), type=VALUES(type),
-                market_id=VALUES(market_id), government=VALUES(government), allegiance_id=VALUES(allegiance_id),
-                economy_id_1=VALUES(economy_id_1), economy_id_2=VALUES(economy_id_2), system_id=VALUES(system_id)
-                ";
-
-        $query = self::getConnection()->prepare($sql);
-        $query->execute($paramArray);
-
-        echo 'added / updated ' . $query->rowCount() . "rows\n";
     }
 
     private function prepData(array $data): array

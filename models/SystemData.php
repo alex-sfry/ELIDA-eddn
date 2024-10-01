@@ -32,11 +32,11 @@ class SystemData extends Model
         }
     }
 
-    public function addSystemData(string $json): void
+    public function addSystemData(string $json): bool
     {
         if (!$json) {
             echo "json is NULL\n";
-            return;
+            return false;
         }
 
         $json_data = json_decode($json, true);
@@ -44,35 +44,66 @@ class SystemData extends Model
         // Debug::d($data);
 
         if (in_array(null, array_values($data))) {
-            return;
+            return false;
         }
 
-        $paramArray = [];
-        $sqlArray = '(' . implode(',', array_fill(0, count($data), '?')) . ')';
+        $sql_rec_exist = "SELECT EXISTS(SELECT 1 FROM `systems` WHERE name=:name)";
+        $query = self::getConnection()->prepare($sql_rec_exist);
+        $query->bindParam(":name", $data['name'], \PDO::PARAM_STR);
+        $query->execute();
+        $exists = $query->fetchColumn();
+        echo 'exists - ' . $exists . "\n";
 
-        foreach ($data as $element) {
-            $paramArray[] = $element;
+        if ($exists) {
+            $sql = "UPDATE `systems`
+                    SET x=:x, y=:y, z=:z, population=:population, allegiance_id=:allegiance,
+                    security_id=:security, economy_id=:economy
+                    WHERE name=:name";
+
+            $pdo = self::getConnection();
+            $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+
+            $query = $pdo->prepare($sql);
+
+            $query->bindParam(':name', $data['name'], \PDO::PARAM_STR);
+            $query->bindParam(':x', $data['x'], \PDO::PARAM_INT);
+            $query->bindParam(':y', $data['y'], \PDO::PARAM_STR);
+            $query->bindParam(':z', $data['z'], \PDO::PARAM_STR);
+            $query->bindParam(':population', $data['population'], \PDO::PARAM_STR);
+            $query->bindParam(':allegiance', $data['allegiance'], \PDO::PARAM_INT);
+            $query->bindParam(':security', $data['security'], \PDO::PARAM_INT);
+            $query->bindParam(':economy', $data['economy'], \PDO::PARAM_INT);
+            $query->execute();
+
+            echo $data['name'] . "\n";
+            echo 'updated ' . $query->rowCount() . "rows\n";
+            unset($pdo);
+            unset($query);
+
+            return true;
+        } else {
+            $paramArray = [];
+            $sqlArray = '(' . implode(',', array_fill(0, count($data), '?')) . ')';
+
+            foreach ($data as $element) {
+                $paramArray[] = $element;
+            }
+
+            // sql query 1st part - table, columns
+            $sql = 'INSERT IGNORE INTO `systems`
+            (name, x, y, z, population, security_id,
+            allegiance_id, economy_id)
+            VALUES ';
+
+            $sql .= $sqlArray;
+
+            $query = self::getConnection()->prepare($sql);
+            $query->execute($paramArray);
+
+            echo 'added ' . $query->rowCount() . "rows\n";
+
+            return true;
         }
-
-        // sql query 1st part - table, columns
-        $sql = 'INSERT IGNORE INTO `systems`
-        (name, x, y, z, population, security_id,
-        allegiance_id, economy_id)
-        VALUES ';
-
-        $sql .= $sqlArray;
-
-        // sql query 3rd part - columns to update
-        $sql .= "ON DUPLICATE KEY UPDATE
-                name=VALUES(name), x=VALUES(x), y=VALUES(y), z=VALUES(z), 
-                population=VALUES(population), allegiance_id=VALUES(allegiance_id), 
-                economy_id=VALUES(economy_id), security_id=VALUES(security_id)
-                ";
-
-        $query = self::getConnection()->prepare($sql);
-        $query->execute($paramArray);
-
-        echo 'added / updated ' . $query->rowCount() . "rows\n";
     }
 
     private function prepData(array $data): array
@@ -90,7 +121,7 @@ class SystemData extends Model
             (int)$data['Population'] : null;
 
         $result['security'] = isset($data['SystemSecurity']) && $data['SystemSecurity'] ?
-            $data['SystemSecurity'] : 6;
+            (int)$this->security[$data['SystemSecurity']] : 6;
 
         $result['allegiance'] = isset($data['SystemAllegiance']) && $data['SystemAllegiance'] ?
             (int)$this->allegiance[$data['SystemAllegiance']] : 7;
