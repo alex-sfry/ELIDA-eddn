@@ -133,6 +133,9 @@ class StationData extends Model
             if ($data['StationType'] === 'FleetCarrier' || $data['StationType'] === 'MegaShip') {
                 $result['type'] = null;
             }
+            if ($data['StationType'] === 'SurfaceStation') {
+                $result['type'] = null;
+            }
         } else {
             $result['type'] = null;
         }
